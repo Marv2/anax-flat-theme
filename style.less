@@ -4,8 +4,8 @@
 @import url(modules.less);
 
 
-
 @textLight: #F2F2F2;
+@paragraphLighter: #A0A0A0;
 @themeAccentColor: #E8BA04;
 
 @themeMenuBgColor: #2B2B2B;
@@ -16,11 +16,22 @@
 
 
 /** --------------------------------------------------------------
+ *  General styles
+ */
+
+.row {
+    min-height: @magicNumber;
+    //background-color: rgba(0, 255, 0, 0.1);
+    //margin-bottom: @magicNumber /2;
+}
+
+/** --------------------------------------------------------------
  *  Header
  */
 .site-header {
-    height: 60px;
-    padding-top: 20px;
+    position: relative;
+    height: @magicNumber * 3;
+    padding-top: @magicNumber/2;
     background-color: @themeMenuBgColor;
 }
 
@@ -28,25 +39,32 @@
     text-decoration: none;
 }
 
+
 .site-logo-text,
 .navbar2,
 .profile {
-    float: left;
-    width: 30%;
-    padding-left: 20px;
+    padding-left: @gutterWidth;
 }
 
+
 .site-logo-text {
-    font-size: 2em;
+    font-family: @fontFamilyHeadings;
+    font-size: 2.175em;
     a {
         text-decoration: none;
         color: @themeAccentColor;
     }
 }
 
+
 /* Navbar Main */
 @navbarItemColor: @textLight;
 @navbarItemHoverColor: #E8BA04;
+
+.rm-default {
+    //font-size: 1.175em;
+    font-family: @fontFamilyHeadings;
+}
 
 /* Navbar Max */
 a.rm-button .rm-button-face-1 {
@@ -55,7 +73,7 @@ a.rm-button .rm-button-face-1 {
 
 @maxBgColor:            @themeMenuBgColor;
 
-@maxButtonFontSize:     2em;
+@maxButtonFontSize:     2em; // Did not look good in the same size as .site-logo-text
 @maxButtonColor:        @themeAccentColor;
 @maxButtonClickedColor: @themeAccentColor;
 
@@ -63,7 +81,10 @@ a.rm-button .rm-button-face-1 {
 /** --------------------------------------------------------------
  *  Logo images
  */
+
+ // logo - temp hide
 .logo-1 {
+    display: none;
     position: absolute;
     top: 8px;
     left: -100px;
@@ -72,6 +93,7 @@ a.rm-button .rm-button-face-1 {
 .site-logo-text-icon {
     img {
         vertical-align: bottom;
+        padding-bottom: .1em; // Visually place circular logo image
     }
 }
 
@@ -80,81 +102,146 @@ a.rm-button .rm-button-face-1 {
  *  Main Content
  */
 
-.outer-wrap-breadcrumb,
 .outer-wrap-main {
-    margin: 0 20px;
-}
-.sidebar {
-    width: 22%;
-    background-color: @sideBarColor;
-    padding: 20px;
-    float: right;
-    margin-left: 4%;
+    width: auto;
+    margin-bottom: @magicNumber * 2;
+ }
 
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    li {
-        padding: .2em 0;
-    }
+.breadcrumb-wrap {
+     width: auto;
 }
 
-.main .has-sidebar {
-    width: 80%;
-    float: left;
-}
+
+/** --------------------------------------------------------------
+ *  Links
+ */
 
 a {
+    font-family: @fontFamilyHeadings;
+    .fontSize(1em);
     color: @linkColor;
     font-weight: 600;
     text-decoration: none;
 }
 
-
 .breadcrumb-list {
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    li {
-        display: inline-block;
-    }
-
-    a {
-        color: #a2a2a2;
-        font-size: .8em;
-        font-weight: 400;
-        margin: .3em;
-    }
-
+     margin-left: 9px;
 }
 
-.breadcrumb-list a {
-    position: relative;
-    padding-right: .2em;
+ .breadcrumb-list {
+     ul {
+         list-style-type: none;
+         padding: 0;
+     }
+
+     li {
+         display: inline-block;
+     }
+
+     a {
+         color: #a2a2a2;
+         .fontSize(.75em);
+         font-weight: 400;
+         margin-right: @lineHeight;
+     }
 }
 
 .breadcrumb-list a:after {
-    content: "\f101";
-    font-family: FontAwesome;
-    padding-left: 5px;
+     content: "\f101";
+     font-family: FontAwesome;
+     padding-left: 6px;
 }
 
-article {
-    width: 100%;
-    max-width: 700px;
+
+// Next and Previous links
+.next-previous {
+    //display: flex;
+    //flex-direction: row;
+    margin-bottom: @magicNumber * 2;
+}
+
+.next,
+.previous {
+    .fontSize(1em);
+    font-family: @fontFamilyHeadings;
+    display: inline-block;
+    background-color: @sideBarColor;
+    //padding-top: @magicNumber/6;
+    //padding-bottom: @magicNumber/6;
+}
+
+.previous {
+    margin-left: 0;
+    //order: 1;
+    text-align: left;
+    float: left;
+    padding: @magicNumber/3;
+}
+
+.next {
+    //order: 2;
+    //.push(8);
+    text-align: right;
+    float: right;
+    padding: @magicNumber/3;
+}
+
+
+/** --------------------------------------------------------------
+ *  Sidebar
+ */
+
+
+.sidebar {
+     background-color: @sideBarColor;
+
+     ul {
+         list-style-type: none;
+         padding: 0;
+     }
+     li {
+         padding: 0;
+         margin: 0;
+     }
+     h4 {
+         margin-top: @magicNumber;
+         margin-bottom: @magicNumber - (@magicNumber /6);
+     }
+}
+
+.sidebar-left,
+.sidebar-right {
+    padding-left: @magicNumber;
+    padding-right: @magicNumber;
+}
+
+.sidebar-right {
+    float: right;
+}
+
+.main.has-sidebar-left {
+    float: right;
+}
+
+
+// Used for ex in sidebar and footer-column - Not generated by layout or style -- bulding part of Anax framework?
+.block {
+    box-sizing: border-box;
+    display: inline;
+    float: left;
+    margin-left: @magicNumber;
+    margin-right: @magicNumber;
+    width: auto;
 }
 
 
 /** --------------------------------------------------------------
  *  Footer
  */
+
 .footer {
-    margin-top: 3em;
-    padding-bottom: 1.67em;
+    margin-top: @lineHeight*2;
+    padding-bottom: @lineHeight * 3;
     background-color: @themeMenuBgColor;
     color: @textLight;
         a {
@@ -168,7 +255,28 @@ article {
 
 .footer-column {
     box-sizing: border-box;
-    padding: 0 20px;
+    padding: 0 @gutterWidth;
+}
+
+.block.site-footer {
+    ul {
+        text-align:center;
+    }
+    li {
+        display: inline;
+    }
+}
+
+/**
+ * A small clearfix:
+ * http://stackoverflow.com/questions/211383/what-methods-of-clearfix-can-i-use
+ */
+.clearfix() {
+    &::after {
+        content: "";
+        display: block;
+        clear:both;
+    }
 }
 
 
@@ -199,6 +307,7 @@ img {
     .sidebar {
         width: 100%;
         background-color: #fff;
+        margin-bottom: @magicNumber * 2;
         /*display: none;*/
         li {
             display: inline-block;
@@ -214,14 +323,12 @@ img {
 }
 
 
+
 @media screen and (max-width: 700px) {
     .footer-column {
         width: 100%;
     }
-}
 
-
-@media screen and (max-width: 560px) {
     .site-logo-text {
         width: 90%;
     }
@@ -239,6 +346,8 @@ img {
 @media screen and (max-width: 400px) {
     .site-footer {
         text-align: left;
-        padding: 0 20px;
+        padding-left: @magicNumber /2;
+        padding-right: @magicNumber /2;
+        padding-top: 0;
     }
 }

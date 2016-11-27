@@ -1,0 +1,92 @@
+// Wrapper
+.wrap-all {
+    .container();
+    max-width: 1038px;
+    // Temp show Grid
+    //.showGrid();
+}
+
+// Create the class row
+.row {
+    .row();
+}
+
+
+// Full Width
+.site-header,
+.flash-wrap,
+.footer {
+    .column(12);
+}
+
+//Header
+.site-logo-text,
+.profile {
+    .column(3);
+}
+
+.navbar2 {
+    .column(6);
+}
+
+// Content
+
+.main {
+    .column(7);
+}
+
+.sidebar {
+    .column(3);
+}
+
+
+// Footer
+.footer-column {
+    .column(4);
+}
+
+
+.block.site-footer {
+    .column(12);
+}
+
+
+
+// Make it responsive using media queries
+
+@media (max-width: 950px) {
+    .main {
+        .column(8);
+        margin-left: 18px;
+        margin-right: 18px;
+    }
+}
+
+@media (max-width: 860px) {
+    .main {
+        .column(9);
+    }
+
+    .rm-navbar-top {
+        display: none;
+    }
+}
+
+@media (max-width: 730px) {
+    .main {
+        .column(10);
+    }
+}
+
+@media (max-width: 620px) {
+    .main {
+        .column(11);
+    }
+}
+
+@media (max-width: 550px) {
+
+    .main {
+        .column(12);
+    }
+}
